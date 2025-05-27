@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ระบบจัดการพนักงาน</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>ระบบจัดการพนักงาน</h1>
+    <p>System by Weerasak Saentaweesuk</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('calendar')">ปฏิทิน</button>
+    <button onclick="showSection('leave')">ลางาน</button>
+    <button onclick="showSection('tasks')">งานที่ต้องทำ</button>
+    <button onclick="showSection('history')">ดูย้อนหลัง</button>
+    <button onclick="showSection('admin')">จัดการระบบ</button>
+  </nav>
+
+  <main>
+    <section id="calendar" class="page">
+      <h2>ตารางเวร / ปฏิทิน</h2>
+      <div id="shiftCalendar">[ปฏิทินจะแสดงตรงนี้]</div>
+    </section>
+
+    <section id="leave" class="page" style="display:none;">
+      <h2>ขอลางาน</h2>
+      <form onsubmit="submitLeaveRequest(); return false;">
+        <input type="date" id="leaveDate" required />
+        <select id="leaveType">
+          <option>ลาป่วย</option>
+          <option>ลากิจ</option>
+          <option>ลาพักร้อน</option>
+        </select>
+        <button type="submit">ยื่นคำขอ</button>
+      </form>
+      <div id="leaveStatus"></div>
+    </section>
+
+    <section id="tasks" class="page" style="display:none;">
+      <h2>สิ่งที่ต้องทำ</h2>
+      <ul id="taskList"></ul>
+      <input type="text" id="newTask" placeholder="เพิ่มงาน..." />
+      <button onclick="addTask()">เพิ่ม</button>
+    </section>
+
+    <section id="history" class="page" style="display:none;">
+      <h2>ประวัติย้อนหลัง</h2>
+      <div id="historyContent">[จะแสดงประวัติที่นี่]</div>
+    </section>
+
+    <section id="admin" class="page" style="display:none;">
+      <h2>แอดมิน</h2>
+      <input type="password" id="adminPass" placeholder="ใส่รหัสแอดมิน"/>
+      <button onclick="adminLogin()">เข้าสู่ระบบ</button>
+      <div id="adminPanel" style="display:none;">
+        <h3>จัดการซิฟ / การลา / พนักงาน</h3>
+        <button onclick="generatePDF()">สร้าง PDF อนุมัติการลา</button>
+        <div id="adminContent">[เครื่องมือแอดมินจะแสดงที่นี่]</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 พัฒนาโดย Weerasak Saentaweesuk</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
